@@ -94,12 +94,15 @@ function init(){
     canvas.addEventListener('mouseleave', handleMouseleave);
     canvas.addEventListener('mouseup', handleMouseup)
     colors.forEach((color, idx) => selectColor(color, idx));
-    widths.forEach(width => {
+    widths.forEach((width, idx)=> {
         width.children[0].style.height = width.getAttribute('data-width');
         console.log(width.getAttribute('data-width').split('px')[0]);
         width.addEventListener('click', function(e){
             console.log(width.getAttribute('data-width').split('px')[0]);
             ctx.lineWidth = width.getAttribute('data-width').split('px')[0];
+            widths[selectedWidth].classList.remove('selected');
+            width.classList.add('selected');
+            selectedWidth = idx;
         })
     });
     drawerOpenBtn.addEventListener('click', handleDrawerOpen);

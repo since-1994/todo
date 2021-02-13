@@ -18,7 +18,7 @@ const addTodo = (todo) => {
     const expandBtn = document.createElement('button');
     const timeStamp = document.createElement('div');
 
-    timeStamp.innerText = `작성일: ${String(todo.createdAt.year)}년 ${todo.createdAt.month}월 ${todo.createdAt.date}일`;
+    timeStamp.innerText = `${String(todo.createdAt.year)}년 ${todo.createdAt.month}월 ${todo.createdAt.date}일`;
     timeStamp.classList.add('timeStamp');
 
     li.id = todo.id;

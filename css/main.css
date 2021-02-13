@@ -5,6 +5,7 @@ main {
   contain: content;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .side-expand-button {
@@ -18,6 +19,7 @@ main {
   justify-content: space-between;
   background-color: transparent;
   z-index: 100000;
+  cursor: pointer;
 }
 
 .side-expand-button .stick {
