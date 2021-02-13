@@ -1,0 +1,119 @@
+span.playBtn {
+  cursor: pointer;
+}
+
+.music-player {
+  padding: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2fr 0.7fr 0.3fr 1fr;
+  grid-auto-rows: 1fr;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.music-player .music-player__inform {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 50px 50px;
+  gap: 5px;
+}
+.music-player__inform h3 {
+  margin-left: 10px;
+  font-size: 17px;
+}
+.music-player__inform .music-player__title {
+  align-self: flex-end;
+}
+.music-player__inform .music-player__artist {
+  color: rgba(0, 0, 0, 0.7);
+}
+.music-player__inform img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  grid-row: 1/ -1;
+}
+
+.music-player__controls {
+  font-size: 22px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.music-player__controls span {
+  margin: 5px 20px;
+}
+
+.music-player__volume {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+}
+.music-player__volume span {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+.music-player__timeline {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white 0%,
+    #545454 0%,
+    #545454 100%
+  );
+  border-radius: 20px;
+}
+
+.music-player__timeline__info {
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.music-player__volume input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white 50%,
+    #545454 50%,
+    #545454 100%
+  );
+  border-radius: 20px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #ffffff;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  background: #ffffff;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[type="range"]::-ms-thumb {
+  background: #ffffff;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+}

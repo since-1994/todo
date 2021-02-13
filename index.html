@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/aside.css">
+    <link rel="stylesheet" href="./css/musicPlayer.css">
+    <link rel="stylesheet" href="./css/todo.css">
+    <link rel="stylesheet" href="./css/clock.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/weatherApp.css">
+    <link rel="stylesheet" href="./css/paintApp.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <aside id ="jsSide">
+        <div class="music-player">
+            <audio id="jsPlayerAudio" src="./audio/music1.mp3" preload="metadata"></audio>
+            <div class="music-player__inform">
+                <img id="jsAlbum" src="./image/cover1.JPG" alt="광화문에서">
+                <h3 id= "jsTitle" class="music-player__title">광화문에서</h3>
+                <h3 id="jsArtist" class="music-player__artist">규현(KYUHYUN)</h3>
+            </div>
+            <input id = "jsTimeline" type="range" class="music-player__timeline" min = "0" max="100" value="0">
+            <div class="music-player__timeline__info">
+                <span id="jsCurrentTime">0:00</span>
+                <span id="jsTotalTime">0:00</span>
+            </div>
+            <div class="music-player__controls">
+                <span id="jsBackward">
+                    <i class="fas fa-backward"></i>
+                </span>
+                <span id = "jsPlayBtn" class ="playBtn">
+                    <i class="fas fa-play"></i>
+                </span>
+                <span id="jsForward">
+                    <i class="fas fa-forward"></i>
+                </span>
+            </div>
+            <div class="music-player__volume">
+                <span>
+                    <i class="fas fa-volume-down"></i>
+                </span>
+                <input id = "jsVolume" type="range" class="music-player__volume" min = "0" max="100" value="50">
+                <span>
+                    <i class="fas fa-volume-up"></i>
+                </span>
+            </div>
+        </div>
+        <div class="todo">
+            <form id ="jsTodoForm" class="todo-form">
+                <input type="text" placeholder="할일" class="todo-form__input" id="jsTodoInput">
+            </form>
+            <ul id="jsTodoList" class="todo-list">
+            </ul>
+        </div>
+        <div class="clocks">
+            <div class="clock">
+                <div id= "jsColumbia" class="clock__container">
+                <span class= "clock__nation">Colombia</span>
+                    <div class="hour">
+                        <div class="hours" id="jsHours"></div>
+                    </div>
+                    <div class="min">
+                        <div class="minutes" id="jsMinutes"></div>
+                    </div>
+                    <div class="sec">
+                        <div class="seconds" id="jsSeconds"></div>
+                    </div>        
+                </div>
+            </div>
+            <div class="clock">
+                <div id= "jsKorea" class="clock__container">
+                    <span class= "clock__nation">Korea</span>
+                    <div class="hour">
+                        <div class="hours" id="jsHours"></div>
+                    </div>
+                    <div class="min">
+                        <div class="minutes" id="jsMinutes"></div>
+                    </div>
+                    <div class="sec">
+                        <div class="seconds" id="jsSeconds"></div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+
+    </aside>
+    <main>
+        <div id="jsSideButton" class ="side-expand-button">
+            <div id="jsStick1" class= "stick stick1"></div>
+            <div id="jsStick2" class="stick stick2"></div>
+            <div id="jsStick3" class="stick stick3"></div>
+        </div>   
+        <div class="app__container">
+            <div id = "jsAppKakao" class ="app app__kakao">
+                <div class="app__kakao__header">
+                    <i class="fas fa-chevron-left"></i>
+                    <h2>희수</h2>
+                    <div>
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <div class="app__kakao__main">
+                    <div class="app__kakao__message">
+                        <div class="app__kakao__message__avatar"><i class="fas fa-user"></i></div>
+                        <div class="app__kakao__message__text">안녕</div>
+                    </div>
+                    <div class="app__kakao__message me">
+                        <div class="app__kakao__message__text">어 그래 안녕</div>
+                    </div>
+                    <div class="app__kakao__message">
+                        <div class="app__kakao__message__avatar"><i class="fas fa-user"></i></div>
+                        <div class="app__kakao__message__text">뭐하냐</div>
+                    </div>
+                    
+                </div>
+                <div class="app__kakao__input">
+                    <input type="text">
+                    <i class="far fa-paper-plane"></i>
+                </div>
+            </div>
+            <div id = "jsAppCalculator" class ="app app__calculator">
+                <div class="app__calculator__display">
+                    <span id="jsCalculatorResult" class="app__calculator__result">0</span>
+                </div>
+                <div id ="jsControlClear" class="controller controller__clear">AC</div>
+                <div id ="jsControlSign" class="controller controller__sign">+/-</div>
+                <div id ="jsControlPercentage" class="controller controller__percentage">%</div>
+                <div id = "3" class= "op op__divide"><i class="fas fa-divide"></i></div>
+                <div id="jsNumber7" class="number number__7">7</div>
+                <div id="jsNumber8" class="number number__8">8</div>
+                <div id="jsNumber9" class="number number__9">9</div>
+                <div id = "2" class= "op op__multiply"><i class="fas fa-times"></i></div>
+                <div id="jsNumber4" class="number number__4">4</div>
+                <div id="jsNumber5" class="number number__5">5</div>
+                <div id="jsNumber6" class="number number__6">6</div>
+                <div id = "1" class= "op op__minus"><i class="fas fa-minus"></i></div>
+                <div id="jsNumber1" class="number number__1">1</div>
+                <div id="jsNumber2" class="number number__2">2</div>
+                <div id="jsNumber3" class="number number__3">3</div>
+                <div id = "0" class= "op op__plus"><i class="fas fa-plus"></i></div>
+                <div id="jsNumber0" class="number number__0">0</div>
+                <div id="jsNumberDot" class="number number__dot">.</div>
+                <div id = "jsEquals" class= "equals"><i class="fas fa-equals"></i></div>
+            </div>
+            <div id = "jsAppWeather" class ="app app__weather">
+                <div class="weather__main">
+                    <div id="jsCity" class="city">--</div>
+                    <div class="weather__condition">
+                    </div>
+                    <div class="weather__temperature">
+                        <div class="weather__temperature__current">
+                            <span id="jsTemperature">--</span>
+                            <span class="unit">°</span>
+                        </div>
+                        <div class="minMax">
+                            <div class="weather__temperature__min">
+                                <span id="jsMinTemperature">--</span>
+                                <span class="unit">°</i></span>
+                            </div>
+                            <div class="weather__temperature__max">
+                                <span id="jsMaxTemperature">--</span>
+                                <span class="unit">°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather__hourly">
+                </div>
+                <div class="weather__daily">
+                </div>
+            </div>
+            <div id ="jsAppPaint" class ="app app__paint">
+                <div id="jsAppPaintEraser" class="app__paint__eraser"></div>
+                <div class="app__paint__header">
+                    <i id= "jsAppPaintAC"class="fas fa-redo-alt"></i>
+                    <i id ="jsPencilModeBtn" class="fas fa-pencil-alt selected"></i> 
+                    <i id ="jsEraserModeBtn"class="fas fa-eraser"></i>
+                    <i id="jsAppPaintDrawerOpenBtn" class="fas fa-palette"></i>
+                </div>
+                <div class="canvas__container">
+                    <canvas id = "jsCanvas"></canvas>
+                </div>
+                <div id="jsAppPaintDrawer" class="app__paint__drawer">
+                    <div class="app__paint__drawer__header">
+                        <div id="jsAppPaintDrawerCloseBtn">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="jsAppPaintDrawerMode" class="app__paint__mode">연필</div>
+                        <div></div>
+                    </div>
+                    <div class="app__paint__widths">
+                        <div class="widths__width" data-width="1px">
+                            <div class="widths__width__sample"></div>
+                        </div>
+                        <div class="widths__width" data-width="3px">
+                            <div class="widths__width__sample"></div>
+                        </div>
+                        <div class="widths__width" data-width="5px">
+                            <div class="widths__width__sample"></div>
+                        </div>
+                        <div class="widths__width" data-width="10px">
+                            <div class="widths__width__sample"></div>
+                        </div>
+                    </div>
+                    <div class="app__paint__colors">
+                        <div class="colors__color selected" data-color="#000000"></div>
+                        <div class="colors__color " data-color="#636363"></div>
+                        <div class="colors__color " data-color="#9B9B9B"></div>
+                        <div class="colors__color " data-color="#D2D2D2"></div>
+                        <div class="colors__color " data-color="#FCFCFC"></div>
+                        <div class="colors__color " data-color="#81218B"></div>
+                        <div class="colors__color " data-color="#D10100"></div>
+                        <div class="colors__color " data-color="#F65353"></div>
+                        <div class="colors__color " data-color="#FF9796"></div>
+                        <div class="colors__color " data-color="#F49A23"></div>
+                        <div class="colors__color " data-color="#007AFF"></div>
+                        <div class="colors__color " data-color="#03458F"></div>
+                        <div class="colors__color " data-color="#007355"></div>
+                        <div class="colors__color " data-color="#7EC636"></div>
+                        <div class="colors__color " data-color="#E6E97B"></div>
+                    </div>               
+                </div>
+            </div>
+        </div> 
+    </main>
+    <footer>
+        <!-- <div id="jsKakaoIcon" class="item kakao">
+            <span>TALK</span>
+            <i class="fas fa-comment"></i>
+        </div> -->
+        <div id="jsCalculatorIcon" class="item calculator">
+            <i class="fas fa-calculator"></i>
+        </div>
+        <div id="jsWeatherIcon" class="item weather">
+            <i class="fas fa-circle sun"></i>
+            <i class="fas fa-cloud cloud"></i>
+        </div>
+        <div id="jsPaintIcon" class="item paint">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <i class="fas fa-pen-alt pen"></i>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/3f1d5ac7cf.js" crossorigin="anonymous"></script>    <script src="./js/main.js"></script>
+    <script src="./js/todo.js"></script>
+    <script src="./js/audio.js"></script>
+    <script src="./js/clock.js"></script>
+    <!-- <script src="./js/kakao.js"></script> -->
+    <script src="./js/calculator.js"></script>
+    <script src="./js/paint.js"></script>
+    <script src="./js/weather.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+.app__weather {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  width: 0;
+  transform: translateY(200%);
+  display: grid;
+  grid-template-rows: 2.5fr 1fr 2fr;
+  width: 0;
+  transition: all 1s ease;
+  font-size: 20px;
+  height: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app__weather.active {
+  width: 330px;
+  transform: translateY(0);
+  margin: 12px;
+}
+
+.app__weather > *:not(:last-child) {
+  border-bottom: 1px solid #91939e;
+}
+
+.app__weather .weather__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.app__weather .city {
+  font-size: 40px;
+}
+
+.app__weather .weather__temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather__temperature .weather__temperature__current {
+  font-size: 70px;
+  letter-spacing: -11px;
+  margin: 10px 0;
+  color: #91939e;
+}
+
+.weather__temperature__current,
+.weather__temperature__min,
+.weather__temperature__max {
+  position: relative;
+}
+
+.app__weather .minMax {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+.app__weather .minMax > * {
+  margin: 5px;
+}
+
+.weather__temperature .unit {
+  font-size: inherit;
+}
+
+.weather__temperature__min::before {
+  content: "최저: ";
+}
+
+.weather__temperature__max::before {
+  content: "최고: ";
+}
+
+.weather__hourly {
+  height: 100%;
+  display: flex;
+  overflow-y: scroll;
+  padding: 0 15px;
+}
+
+.weather__hourly .weather__hourly__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 8px;
+  width: fit-content;
+  font-size: 15px;
+}
+
+.weather__hourly__item span {
+  width: 60px;
+  text-align: center;
+}
+
+.weather__hourly__item span:nth-child(2) {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.weather__daily {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.weather__daily__item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  padding: 5px 0;
+}
+
+.weather__daily img {
+  width: 20px;
+  height: 20px;
+}
+.weather__daily__minMax {
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+}
+.weather__daily__minMax > span:last-child {
+  color: #91939e;
+}

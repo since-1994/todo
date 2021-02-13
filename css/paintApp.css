@@ -1,0 +1,151 @@
+.app__paint {
+  --padding: 60px;
+}
+
+.app__paint {
+  position: relative;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 0;
+  transform: translateY(100%);
+  overflow: hidden;
+  transition: all 1s ease;
+}
+
+.app__paint.active {
+  width: 330px;
+  transform: translateY(0);
+  margin: 10px;
+}
+.app__paint__eraser {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 0;
+}
+.app__paint__header {
+  position: absolute;
+  top: 0;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #272624c7;
+  color: white;
+  font-size: 15x;
+}
+.app__paint__header i {
+  transform: scaleY(1.1);
+}
+.app__paint__header i.selected {
+  color: #097ded;
+}
+.app__paint .canvas__container {
+  width: 100%;
+  height: 100%;
+}
+.app__paint canvas {
+  background-color: #f0eab0;
+}
+
+.app__paint__drawer {
+  position: absolute;
+  bottom: 0;
+  width: 330px;
+  height: 430px;
+  border-radius: 20px 20px 0 0;
+  background-color: #272624;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+}
+
+.app__paint__drawer.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.app__paint__drawer__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 20px;
+  color: #097ded;
+  cursor: pointer;
+}
+
+.app__paint__drawer__header > div {
+  width: 33%;
+}
+.app__paint__drawer__header .app__paint__mode {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.app__paint__widths {
+  padding: var(--padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app__paint__widths .widths__width {
+  height: 22px;
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.widths__width > div {
+  width: 100%;
+  border-radius: 5px;
+  background-color: white;
+}
+.app__paint__colors {
+  height: 250px;
+  padding: var(--padding);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 30px;
+  gap: 20px;
+  justify-items: center;
+}
+
+.app__paint__colors .colors__color {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.2s linear;
+}
+
+.colors__color.selected:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: white;
+  box-shadow: inset;
+}
+.colors__color:hover {
+  transform: scale(1.2);
+}
+
+.colors__color:nth-child(5).selected:before,
+.colors__color:nth-child(4).selected:before,
+.colors__color:last-child.selected:before {
+  color: grey;
+}

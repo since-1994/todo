@@ -1,0 +1,30 @@
+aside {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 340px;
+  height: 90vh;
+  padding: 0 10px 20px 10px;
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  z-index: 50;
+}
+
+aside::-webkit-scrollbar {
+  display: none;
+}
+
+aside > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
+aside > *:not(:last-child) {
+  background-color: rgba(233, 222, 222, 0.918);
+}
+
+aside > *:last-child > * {
+  background-color: rgba(233, 222, 222, 0.918);
+}

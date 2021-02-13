@@ -1,0 +1,131 @@
+.todo {
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+}
+.todo .todo-form input {
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  padding: 5px 0;
+}
+.todo .todo-form input:focus {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+.todo-list {
+  width: 100%;
+}
+.todo-list__item {
+  margin: 7px 0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  padding: 0 5px;
+  transform-origin: top left;
+  /* background-color: #e6ae02; */
+  background-color: white;
+}
+.todo-list__item:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.todo-list__item__title {
+  height: 40px;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  font-weight: 500;
+  overflow: hidden;
+}
+.todo-list__item:hover .editBtn,
+.todo-list__item:hover .deleteBtn,
+.todo-list__item:hover .expandBtn {
+  transform: translateX(0);
+}
+
+.todo-list__item .editBtn,
+.todo-list__item .deleteBtn,
+.todo-list__item .expandBtn {
+  transform: translateX(330%);
+  transition: all 0.3s ease;
+}
+.todo-list__item__title .checkBtn {
+  font-size: 15px;
+}
+.todo-list__item__title form {
+  grid-column: 2/3;
+  width: 100%;
+  overflow: hidden;
+}
+.todo-list__item__title form.edit {
+  grid-column: 1/3;
+}
+
+.todo-list__item__title .cancel {
+  grid-column: -3/-1;
+  font-size: 15px;
+  display: none;
+  justify-self: flex-end;
+}
+.todo-list__item__title .cancel.edit {
+  display: block;
+}
+
+.todo-list__item__title input {
+  border: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  background-color: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+}
+.todo-list__item__title input:focus {
+  outline: none;
+}
+.todo-list__item__title button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.todo-list__item__title button i {
+  pointer-events: none;
+}
+
+.todo-list__item__title .deleteBtn {
+  grid-column: -2/-1;
+  color: rgb(192, 79, 79);
+}
+
+.todo-list__item__title .checkBtn.edit,
+.todo-list__item__title .editBtn.edit,
+.todo-list__item__title .deleteBtn.edit,
+.todo-list__item__title .expandBtn.edit {
+  display: none;
+}
+
+.todo-list__item__title .timeStamp {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.8);
+}
+.checkBtn i {
+  pointer-events: none;
+}
+.todo-list__item__detail {
+  padding: 5px 0;
+  display: none;
+}
+.todo-list__item__detail.active {
+  display: block;
+}
