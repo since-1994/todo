@@ -49,6 +49,7 @@ main {
 .app {
   width: 330px;
   height: 80%;
+  max-height: 660px;
   border-radius: 20px;
   margin: 0;
   /* overflow: hidden; */

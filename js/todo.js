@@ -11,7 +11,7 @@ const addTodo = (todo) => {
     const li = document.createElement('div');
     const check = document.createElement('span');
     const textContainer = document.createElement('form');
-    const h3 = document.createElement('h3');
+    const p = document.createElement('p');
     const editBtn = document.createElement('button');
     const delBtn = document.createElement('button');
     const cancelBtn = document.createElement('button');
@@ -26,14 +26,14 @@ const addTodo = (todo) => {
     
     check.classList.add('checkBtn');
 
-    h3.innerText = todo.text;
-    textContainer.appendChild(h3);
+    p.innerText = todo.text;
+    textContainer.appendChild(p);
     textContainer.classList.add('textContainer');
     textContainer.addEventListener('submit', handleChange);
 
     if(todo.checked){
         check.innerHTML = '<i class="far fa-check-square"></i>';
-        h3.style.textDecoration = 'line-through';
+        p.style.textDecoration = 'line-through';
         check.addEventListener('click', handleDecheck);
         editBtn.classList.add('edit');
         expandBtn.classList.add('edit');
@@ -76,8 +76,63 @@ const addTodo = (todo) => {
     todoContainer.classList.add('todo-list__item');
     todoContainer.appendChild(li);
     todoContainer.appendChild(todoDetail);
-
+    todoContainer.draggable = "true";
+    todoContainer.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData("text", li.id);
+        console.log(li.id);
+    });
+    todoContainer.addEventListener('dragexit', (e) => {
+        console.log(e);
+    });
+    todoContainer.addEventListener('dragover', e => {
+        e.preventDefault()
+        todoContainer.style.marginBottom = "55px";
+    });
+    todoContainer.addEventListener('dragleave', e => {
+        e.preventDefault()
+        todoContainer.style.marginBottom = "0";
+    });
+    todoContainer.addEventListener('drop', e => {
+        todoContainer.style.marginBottom = "0";
+        // const id = todoContainer.children[0].id;
+        const movedId = e.dataTransfer.getData('text');
+        const movedTodo = todos.find(todo => todo.id == movedId);
+        let movedIdx = -1;
+        let movedBeforeIdx = -1;
+        const movedBeforeId = todoContainer.children[0].id;
+        todos.forEach((todo, idx) => {
+            if(todo.id == movedBeforeId){
+                movedBeforeIdx = idx;
+            }
+            if(todo.id == movedId){
+                movedIdx = idx;
+            }
+        });
+        if(movedIdx !== movedBeforeIdx){
+            if(movedIdx > movedBeforeIdx){
+                console.log("생각할 필요 없음");
+                todos = todos.filter((todo, idx) => idx !== movedIdx);
+                todos.splice(movedBeforeIdx+1, 0, movedTodo);
+                saveTodo();
+                todos = [];
+                todoList.innerHTML = "";
+                loadTodo();
+            }else if(movedIdx < movedBeforeIdx){
+                console.log("생각해야됨");
+                todos = todos.filter((todo, idx) => idx !== movedIdx);
+                todos.splice(movedBeforeIdx, 0, movedTodo);
+                saveTodo();
+                todos = [];
+                todoList.innerHTML = "";
+                loadTodo();
+            }
+        }
+        // todos = todos.filter(todo => {
+        //     return todo.id !== movedTodo.id;
+        // });
+    });
     todoList.appendChild(todoContainer);
+    
 }
 
 const loadTodo = () => {
@@ -94,10 +149,11 @@ const generateId =  () => {
 const handleEdit = e => {
     const li = e.target.parentNode;
     const textContainer = li.querySelector('.textContainer');
-    const todo = textContainer.querySelector('h3');
+    const todo = textContainer.querySelector('p');
     const todoText = todo.innerText;
 
-    const input = document.createElement('input');
+    const input = document.createElement('textarea');
+    input.rows = "4";
     input.type= "text";
     input.value= todoText;
     
@@ -139,11 +195,11 @@ const handleChange = e => {
     saveTodo();
 
     
-    const h3 = document.createElement('h3');
-    h3.innerText = todoText;
+    const p = document.createElement('p');
+    p.innerText = todoText;
     
     textContainer.innerHTML= '';
-    textContainer.appendChild(h3);
+    textContainer.appendChild(p);
     toggleEdit(li);
 }
 
@@ -151,16 +207,16 @@ const handleEditCancel = (e) => {
     const li = e.target.parentNode;
     const id = li.id;
     const textContainer = li.querySelector('.textContainer');
-    const h3 = document.createElement('h3');
+    const p = document.createElement('p');
     
     for(let i in todos){
         if(todos[i].id == id){
-            h3.innerText = todos[i].text;
+            p.innerText = todos[i].text;
         }
     }
     
     textContainer.innerHTML= '';
-    textContainer.appendChild(h3);
+    textContainer.appendChild(p);
     toggleEdit(li);
 }
 
@@ -169,7 +225,7 @@ const handleCheck = e => {
     const item = e.target.parentNode;
     const editBtn = item.querySelector('#jsEditBtn');
     const expandBtn = item.querySelector('.expandBtn');
-    const text = item.querySelector('h3');
+    const text = item.querySelector('p');
 
     const todo = todos.find(todo => todo.id == item.id);
     todo.checked = true;
@@ -187,7 +243,7 @@ const handleCheck = e => {
 const handleDecheck = e => {
     const check = e.target;
     const item = e.target.parentNode;
-    const text = item.querySelector('h3');
+    const text = item.querySelector('p');
     const editBtn = item.querySelector('#jsEditBtn');
     const expandBtn = item.querySelector('.expandBtn');
 

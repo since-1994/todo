@@ -6,6 +6,7 @@ aside {
   height: 90vh;
   padding: 0 10px 20px 10px;
   transform: translateX(-100%);
+  /* transform: translateX(0); */
   transition: all 0.5s ease;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
