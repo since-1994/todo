@@ -29,7 +29,7 @@ function init(){
     backward.addEventListener('click', handlePlayList);
     timeline.addEventListener('input', handleTimeline);
     volume.addEventListener('input', handleVolume);
-    setInterval(checkCurrentTime, 500);
+    setInterval(checkCurrentTime);
     audio.addEventListener('loadedmetadata', setAudio);
     audio.addEventListener('play', setAudio);
 }
