@@ -11,12 +11,14 @@ const musics = [
     {
         id:0,
         artist: "규현(KYUHYUN)",
-        title: "광화문에서"
+        title: "광화문에서",
+        cover: "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/476/538/80476538_1415780235463_1_600x600.JPG"
     },
     {
         id:1,
         artist: "아이유(IU)",
-        title: "Celebrity" 
+        title: "Celebrity",
+        cover: "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/867/444/81867444_1611726218872_1_600x600.JPG"
     }
 ]
 let nowPlaying = musics[0];
@@ -39,7 +41,7 @@ const handlePlayList = () => {
     const title = document.querySelector('#jsTitle');
     const artist = document.querySelector('#jsArtist');
 
-    album.src = `./image/cover${nowPlaying.id+1}.jpg`;
+    album.src = nowPlaying.cover;
     title.innerText = nowPlaying.title;
     artist.innerText = nowPlaying.artist;
     handlePlayClick();
