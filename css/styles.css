@@ -11,3 +11,7 @@ html,
 *::-webkit-scrollbar {
   display: none;
 }
+
+body {
+  font-family: "Gothic A1", sans-serif;
+}
