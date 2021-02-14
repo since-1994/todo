@@ -184,6 +184,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .app__calculator .op {
   font-size: 20px;
