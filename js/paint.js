@@ -126,22 +126,3 @@ function init(){
 }
 
 init();
-
-// let erasing = false;
-// canvas.addEventListener('mousedown', (e) => {
-//     erasing = true;
-// });
-
-// canvas.addEventListener('mousemove', e => {
-//     if(erasing){
-//         const x = e.offsetX;
-//         const y = e.offsetY;
-//         ctx.clearRect(x, y, 5, 5);
-//     }
-// });
-
-// canvas.addEventListener('mouseleave', e => erasing = false );
-
-// canvas.addEventListener('mouseup', e => {
-//     erasing = false;
-// })
