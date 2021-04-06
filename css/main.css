@@ -1,6 +1,6 @@
 main {
   position: relative;
-  background-image: url("../image/bg2.jpg");
+  background-image: url("../image/bg2.webp");
   background-size: cover;
   contain: content;
   width: 100vw;

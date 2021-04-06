@@ -92,7 +92,8 @@ const setWeather = async () => {
     hourlyWeatherContainer.appendChild(div1);
   }
 };
-async function init() {
+
+function init() {
   window.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("http://ip-api.com/json");
     const data = await response.json();
@@ -100,7 +101,6 @@ async function init() {
     user__position = { lat, lon };
     setWeather();
   });
-  //   loadLocation();
 }
 
 init();
