@@ -21,7 +21,7 @@
 
 3.  현재 재생 위치 표시 및 재생 위치 변경
 
-    현재 재생 위치를 표현하기 위해 audio의 currentTime property와 duration property 그리고 css의 background에 linear-gradient를 적극 활용하였습니다.
+    현재 재생 위치를 표현하기 위해 audio의 currentTime property와 duration property 그리고 css의 background에 linear-gradient를 적극 활용하여 구현하였습니다.
 
     ```javascript
     const value = Math.floor((audio.currentTime / audio.duration) * 100);
@@ -30,7 +30,7 @@
 
 4.  볼륨 조절
 
-    audio의 volume property를 사용하여 volume 조절 기능 구현하였습니다.
+    audio의 volume property를 사용하여 volume 조절 기능을 구현하였습니다.
 
 ### 2. Todo
 
@@ -38,8 +38,8 @@
 
 1. data 저장 및 CRUD
 
-- 사용자가 페이지를 떠나도 작성해둔 todo data를 저장해놓기 위해 `localStorage`에 각 todo item을 저장한 배열을 JSON.stringify를 이용하여 저장하였습니다.
-- 저장된 todo 배열이 있을 경우 받아온 후 JSON.parse를 이용하여 다시 사용할 수 있도록 하였습니다.
+- 사용자가 페이지를 떠나도 작성해둔 todo data를 저장해놓기 위해 webStorage인 `localStorage`에 todo 객체를 저장한 배열을 `JSON.stringify`를 이용하여 저장하였습니다.`JSON.stringify`를 사용한 이유는 localStorage에는 문자열만 저장할 수 있기 때문입니다.
+- 저장된 todo 배열이 있을 경우 받아온 후 JSON.parse를 이용하여 문자열을 객체로 변형해주어 사용하였습니다.
 - Update나 Delete 시에 정확히 원하는 item을 가리키기 위해 각 item마다 id를 부여해야 했는데 간단하게 ms까지 구분되는 `Date.now()`를 사용하였다가 혹시 모를 상황에 대비해 `Math.random()*100`까지 더해주어 item끼리 id가 중복되는 의도치 않은 상황이 발생할 경우의 수를 매우 작게 줄여보았습니다.
 
 2. drag & drop
@@ -49,7 +49,7 @@
    - 1. 이동하고자 하는 element의 draggable property를 true로 해준다.
    - 2. element에 dragstart event 에 대한 listener를 달아주고 해당 event 발생시 실행될 콜백함수에서 ` event.dataTransfer.setData(<key>, <value>)` 를 통해 옮기고자 하는 value를 저장한다.
    - 3. drag된 item이 drop될 element에는 drop evnet에 대한 listener를 달아주고 해당 event 발생시 실행될 콜백함수에서 `const value = ev.dataTransfer.getData(<key>");`를 통해 현재 item에 대한 value를 받아와 원하는 동작을 처리해주면 된다.
-   - 4. 추가로 dragover event를 활용하면 현재 drag되고 있는 element가 움직이는 것을 감지할 수 있는데 이것을 사용하여 좀더 자연스러운 drag&drop 구현이 가능하다.
+   - 4. 추가로 dragover event를 활용하면 현재 drag되고 있는 element가 움직이는 것을 시각적으로 구현할 수 있는데 이것을 통해 좀더 자연스러운 drag&drop 구현이 가능하다.
 
 ### 3. 날씨 앱
 
@@ -65,15 +65,23 @@
 
 2. 사용자의 편의를 위한 위치 데이터 저장
 
-   사용자에게 매번 위치 데이터를 묻는 것은 사용자 편의성이 떨어지는데 이것을 해결하기 위한 방법으로 localStorage를 사용했습니다.
+   사용자에게 매번 위치 데이터를 묻는 것은 사용자 편의성이 떨어지는데 이것을 해결하기 위한 방법으로 localStorage를 사용했었습니다. 하지만 문제점을 발견하고 해결한 과정을 아래와 같이 정리해보았습니다.
 
    - localStorage 사용
 
      사용자의 위치를 한번 받으면 localStorage에 저장해두었다가 다음 요청에 저장된 위치를 기반으로 날씨를 받아올 수 있습니다. 단점으로는 처음 위치를 저장했던 후로 시간이 많이 지나게 되면 위치가 변했을 확률이 높기 때문에 최선은 아니라고 할 수 있습니다.
 
-   - geolocation api의 positionOptions 객체 사용
+   - 데이터에 만료 기간 정해주기
 
-     제가 해당 프로젝트에 사용한 것은 아니지만 options로 전달할 객체에 ms로 위치에 대한 유효 시간을 전달하면 이 시간 동안에는 동일한 요청이 들어오면 같은 값을 반환하여 비용적 문제를 줄이는데 도움이 될 것이라고 생각합니다.
+     localStorage에 저장할 때 저장할 당시의 시간을 저장해주고 저장후로부터 일정한 시간이 지나면 새로 받아오는 방법을 생각했습니다. 하지만 이 방법도 결국엔 임의의 시간이 지난 후 갱신하는 것이므로 localStorage만으로는 완벽한 해결방법이 없겠다는 것을 알게되었습니다.
+
+   - ip-api를 통한 위치 정보 획득
+
+     사용자의 ip를 통해 위치 정보를 얻을 수 있는 ip-api(http://ip-api.com/json/)를 이용해 위치 정보를 받게 되면 사용자의 동의를 구하지 않아도 되기 때문에 첫번째 문제 였던 사용자 편의성을 해결했습니다. 또한 localStorage에 저장하지 않고 현재 위치를 매번 확인하기 때문에 정보의 부정확성에 대한 문제도 해결했습니다.
+
+   - localStorage와 ip-api를 모두 사용하기
+
+     최종적으로는 localStorage와 ip-api를 모두 사용하는 방법을 적용했습니다. ip-api를 통해 받아온 위치정보를 localStorage에 저장해두었다가 위치 정보를 받아오는 과정에서 에러가 발생한 경우 이전 위치를 보여주는 방법을 적용해보았습니다.
 
 ### 4. 굿노트 앱
 
@@ -116,11 +124,11 @@
 
    - 색상
 
-     `ctx.strokeStyle = color`를 이용하였습니다.
+     `ctx.strokeStyle = <color>`를 이용하였습니다.
 
    - 두께
 
-     `ctx.lineWidth = lineWidth`를 이용하였습니다.
+     `ctx.lineWidth = <lineWidth>`를 이용하였습니다.
 
 3. 초기화 및 지우개 기능(pointer)
 
