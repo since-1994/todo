@@ -24,22 +24,22 @@ const dailyWeatherContainer = document.querySelector(".weather__daily");
 const hourlyWeatherContainer = document.querySelector(".weather__hourly");
 
 const loadLocation = async () => {
-  // if (localStorage.getItem(LOCATION)) {
-  //   user__position = JSON.parse(localStorage.getItem(LOCATION));
-  //   setWeather();
-  // } else {
-  //   navigator.geolocation.getCurrentPosition(success);
-  // }
+  if (localStorage.getItem(LOCATION)) {
+    user__position = JSON.parse(localStorage.getItem(LOCATION));
+    setWeather();
+  } else {
+    navigator.geolocation.getCurrentPosition(success);
+  }
 
-  const res = await fetch("http://ip-api.com/json/");
-  const data = await res.json();
+  // const res = await fetch("http://ip-api.com/json/");
+  // const data = await res.json();
 
-  user__position = {
-    lat: data.lat,
-    lon: data.lon,
-  };
+  // user__position = {
+  //   lat: data.lat,
+  //   lon: data.lon,
+  // };
 
-  setWeather();
+  // setWeather();
 };
 const success = (position) => {
   console.log(position);
